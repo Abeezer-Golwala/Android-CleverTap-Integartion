@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            android:id="@+id/textv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_below="@+id/textv"
+            android:layout_marginTop="10dp"
+            android:id="@+id/createuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create User Profile" />
+        <Button
+            android:layout_below="@+id/createuser"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pushnotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push notification" />
+        <Button
+            android:layout_below="@+id/pushnotification"
+            android:layout_marginTop="10dp"
+            android:id="@+id/appinbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App in box" />
+        <Button
+            android:layout_below="@+id/appinbox"
+            android:layout_marginTop="10dp"
+            android:id="@+id/getmsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get message" />
+        <Button
+            android:layout_below="@+id/getmsg"
+            android:layout_marginTop="10dp"
+            android:id="@+id/inappnotif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get In app notification" />
+        <Button
+            android:layout_below="@+id/inappnotif"
+            android:layout_marginTop="10dp"
+            android:id="@+id/nativedisp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Native Display" />
+
+        <Button
+            android:id="@+id/pushev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nativedisp"
+            android:text="Push Custom Events" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/c1"
+            android:layout_below="@+id/pushev">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+                    <TextView
+                        android:id="@+id/titlem"
+                        android:layout_below="@+id/nativedisp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/msg"
+                        android:layout_below="@+id/titlem"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</ScrollView>
