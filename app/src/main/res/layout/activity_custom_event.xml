@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomEventActivity">
+
+    <EditText
+        android:id="@+id/eventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Event Name" />
+    <Button
+        android:id="@+id/uploadev"
+        android:layout_below="@+id/eventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+
+        android:textSize="10sp"
+        android:text="Upload Event"/>
+    <Button
+        android:id="@+id/addprop"
+        android:layout_below="@+id/eventName"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="30sp"
+
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="Add Event Properties"/>
+    <LinearLayout
+        android:layout_below="@+id/addprop"
+        android:layout_marginLeft="30sp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll1"
+        android:orientation="vertical" />
+</RelativeLayout>
+</ScrollView>

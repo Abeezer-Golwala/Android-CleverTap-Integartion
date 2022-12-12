@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.clevertap.android:clevertap-geofence-sdk:1.1.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/849c849c20e045e0e48c65ee79306e25/transformed/jetified-clevertap-geofence-sdk-1.1.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/849c849c20e045e0e48c65ee79306e25/transformed/jetified-clevertap-geofence-sdk-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/849c849c20e045e0e48c65ee79306e25/transformed/jetified-clevertap-geofence-sdk-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/849c849c20e045e0e48c65ee79306e25/transformed/jetified-clevertap-geofence-sdk-1.1.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.clevertap.android/clevertap-geofence-sdk/1.1.0/c04af24c397b294c05b7d4ccaf4a87b321c83865/clevertap-geofence-sdk-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

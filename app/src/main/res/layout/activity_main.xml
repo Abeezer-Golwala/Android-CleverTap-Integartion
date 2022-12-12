@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_light_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relative1"
+        tools:context=".MainActivity">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1" />
+
+        <Button
+            android:id="@+id/createuser"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/slider"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundedcorners"
+            android:text="Create User Profile" />
+
+        <Button
+            android:id="@+id/pushnotification"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/slider"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/roundedcorners"
+            android:text="Push notification" />
+
+        <Button
+            android:id="@+id/appinbox"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/pushnotification"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundedcorners"
+            android:text="App inbox" />
+
+        <Button
+            android:id="@+id/getmsg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/pushnotification"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/roundedcorners"
+            android:text="Get App inbox message" />
+
+        <Button
+            android:id="@+id/inappnotif"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/getmsg"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundedcorners"
+            android:text="In App" />
+
+
+
+
+        <Button
+            android:id="@+id/pushev"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/getmsg"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/roundedcorners"
+            android:text="Push Custom Events" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_below="@id/pushev"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/webview"
+                android:layout_width="350sp"
+                android:layout_height="100sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorners"
+                android:text="Open Webview" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_light_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".webviewActivity">
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="30sp"
+        android:id="@+id/url"/>
+    <Button
+        android:id="@+id/openurl"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/url"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/roundedcorners"
+        android:text="Open Link" />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_below="@+id/openurl"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"/>
+</RelativeLayout>
+</ScrollView>

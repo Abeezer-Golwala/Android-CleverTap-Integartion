@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreateUser">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/t1">
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_marginTop="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/namet"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="30sp"
+                    android:text="Name"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:textSize="20sp"
+                    android:id="@+id/nameet"
+                    android:hint="Enter Name" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="30sp"
+
+                    android:text="Email"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:id="@+id/emailet"
+                    android:hint="Enter Email" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="30sp"
+                    android:text="Number"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:id="@+id/numbet"
+
+                    android:textSize="20sp"
+                    android:hint="Enter Contact Number" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="30sp"
+
+                    android:text="Identity"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:id="@+id/idet"
+                    android:textSize="20sp"
+                    android:hint="Enter Identity" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_marginLeft="30sp"
+
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:text="Set Reachability"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="fill_parent">
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/pushc"
+
+
+
+                    android:text="Push"/>
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/smsc"
+                    android:text="SMS"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="fill_parent">
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/emailc"
+                    android:text="Email"/>
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/whatsappc"
+                    android:text="Whatsapp"/>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/cubt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/t1"
+            android:background="@drawable/roundedcorners"
+            android:layout_centerHorizontal="true"
+            android:text="Create User Profile" />
+
+        <TextView
+            android:id="@+id/up1"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cubt"
+            android:layout_marginTop="30sp"
+            android:text="Push Custom User Properties"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/upet1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/up1"
+            android:layout_marginLeft="30sp"
+            android:hint="Enter Custom User Property Key" />
+
+        <EditText
+            android:id="@+id/upet2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/upet1"
+            android:layout_marginLeft="30sp"
+            android:hint="Enter Custom User Property Value" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:layout_below="@+id/upet2"
+            android:id="@+id/ll1"
+            android:orientation="vertical" />
+        <Button
+            android:id="@+id/userpropbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roundedcorners"
+            android:layout_below="@+id/ll1"
+            android:text="Upload User Properites" />
+
+        <Button
+            android:id="@+id/userpropv"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/upet1"
+            android:layout_marginStart="10sp"
+            android:layout_toRightOf="@+id/upet2"
+            android:background="@drawable/roundedcorners"
+            android:text="+" />
+    </RelativeLayout>
+</ScrollView>
