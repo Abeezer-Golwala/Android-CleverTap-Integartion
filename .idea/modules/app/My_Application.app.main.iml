@@ -134,9 +134,9 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-cloud-messaging:17.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-datatransport:18.1.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid-interop:17.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.clevertap.android:clevertap-android-sdk:4.7.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.clevertap.android:clevertap-android-sdk:4.7.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.installreferrer:installreferrer:2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.clevertap.android:push-templates:1.0.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.clevertap.android:push-templates:1.0.7@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer:2.17.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-common:2.17.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-database:2.17.1@aar" level="project" />
@@ -150,6 +150,7 @@
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-smoothstreaming:2.17.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-ui:2.17.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.media:media:1.4.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.clevertap.android:clevertap-rendermax-sdk:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.clevertap.android:clevertap-geofence-sdk:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:20.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.work:work-runtime:2.7.1@aar" level="project" />

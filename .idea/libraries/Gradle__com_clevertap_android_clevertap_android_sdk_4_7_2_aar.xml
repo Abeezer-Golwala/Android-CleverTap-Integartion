@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.clevertap.android:clevertap-android-sdk:4.7.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dfd75b5bb3379ccf569f58d78022bfbd/transformed/jetified-clevertap-android-sdk-4.7.2/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dfd75b5bb3379ccf569f58d78022bfbd/transformed/jetified-clevertap-android-sdk-4.7.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dfd75b5bb3379ccf569f58d78022bfbd/transformed/jetified-clevertap-android-sdk-4.7.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dfd75b5bb3379ccf569f58d78022bfbd/transformed/jetified-clevertap-android-sdk-4.7.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.clevertap.android/clevertap-android-sdk/4.7.2/b7a52efaedde41d6dd3cabf2b6b8e979dfdeedfe/clevertap-android-sdk-4.7.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

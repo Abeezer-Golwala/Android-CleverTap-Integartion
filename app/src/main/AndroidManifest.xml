@@ -98,13 +98,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 <!--        <meta-data-->
 <!--            android:name="CLEVERTAP_ACCOUNT_ID"-->
-<!--            android:value="TEST-848-RRR-646Z" />-->
+<!--            android:value="TEST-86Z-999-446Z" />-->
 <!--        <meta-data-->
 <!--            android:name="CLEVERTAP_TOKEN"-->
-<!--            android:value="TEST-222-b4b" />-->
+<!--            android:value="TEST-ccc-16b" />-->
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
             android:value="TEST-468-W87-546Z" />
@@ -126,20 +125,11 @@
 
 <!--         android:name=".MyFcmMessageListenerService"-->
         <service
-                android:name=".MyFcmMessageListenerService"
+                android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name="com.clevertap.android.sdk.CTNotificationIntentService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.clevertap.PUSH_EVENT"/>
-            </intent-filter>
-        </service>
-
     </application>
-
 </manifest>

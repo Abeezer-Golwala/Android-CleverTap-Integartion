@@ -5,10 +5,10 @@ import android.app.Application;
 import android.util.Log;
 
 import com.clevertap.android.pushtemplates.PushTemplateNotificationHandler;
+import com.clevertap.android.sdk.interfaces.NotificationHandler;
 import com.clevertap.android.pushtemplates.TemplateRenderer;
 import com.clevertap.android.sdk.ActivityLifecycleCallback;
 import com.clevertap.android.sdk.CleverTapAPI;
-import com.clevertap.android.sdk.interfaces.NotificationHandler;
 import com.clevertap.android.sdk.pushnotification.CTPushNotificationListener;
 import com.clevertap.android.sdk.pushnotification.PushConstants;
 
@@ -23,11 +23,12 @@ public class GlobalApplication extends Application implements CTPushNotification
         CleverTapAPI.createNotificationChannel(getApplicationContext(),"abtest","abtest","test ab",3,true);
         CleverTapAPI.getDefaultInstance(this).setCTPushNotificationListener(this);
         TemplateRenderer.setDebugLevel(3);
-        Log.d("payload","Here");
-        System.out.println("testctt");
+        CleverTapAPI.setDebugLevel(3);
+        CleverTapAPI.getDefaultInstance(this).enableDeviceNetworkInfoReporting(true);
     }
+
     @Override
     public void onNotificationClickedPayloadReceived(HashMap<String, Object> payload) {
-        System.out.println("testctt"+payload.toString());
+
     }
 }

@@ -31,6 +31,7 @@ import com.clevertap.android.geofence.interfaces.CTGeofenceEventsListener;
 import com.clevertap.android.sdk.CTInboxListener;
 import com.clevertap.android.sdk.CTWebInterface;
 import com.clevertap.android.sdk.CleverTapAPI;
+import com.clevertap.android.sdk.CleverTapInstanceConfig;
 import com.clevertap.android.sdk.GeofenceCallback;
 import com.clevertap.android.sdk.displayunits.DisplayUnitListener;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnit;
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener,D
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CleverTapAPI clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(this);
+        CleverTapInstanceConfig clevertapmain =  CleverTapInstanceConfig.createInstance(this, "TEST-468-W87-546Z", "TEST-ab0-b64");
+        CleverTapInstanceConfig clevertapAdditionalInstanceConfig =  CleverTapInstanceConfig.createInstance(this, "TEST-86K-6R8-W66Z", "TEST-b26-36b");
+        clevertapAdditionalInstanceConfig.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE); // default is CleverTapAPI.LogLevel.INFO
+        clevertapmain.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE);
+        CleverTapAPI cleverTapAPIAdditionalInstance = CleverTapAPI.instanceWithConfig(this,clevertapAdditionalInstanceConfig);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
         if (clevertapDefaultInstance != null) {
             //Set the Notification Inbox Listener
@@ -106,7 +113,10 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener,D
             clevertapDefaultInstance.pushEvent("AbeezerPushEvent");
         });
         inappnotif.setOnClickListener(v -> {
-            clevertapDefaultInstance.pushEvent("abeezerinapnotif");
+            HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+            prodViewedAction.put("testkey", null);
+
+            clevertapDefaultInstance.pushEvent("abeezerinapnotif",prodViewedAction);
         });
         findViewById(R.id.pushev).setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, CustomEventActivity.class);
