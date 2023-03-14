@@ -35,5 +35,4 @@ public class webviewActivity extends AppCompatActivity {
             mywebview.loadUrl(geturl);
         });
     }
-
 }

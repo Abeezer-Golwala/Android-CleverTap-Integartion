@@ -18,10 +18,9 @@ import java.util.HashMap;
 
 public class CreateUser extends AppCompatActivity {
     EditText userpropkey,userpropvalue,namest1,emailst1,numbst1,idst1;
-    CheckBox c1,c2,c3,c4;
+    CheckBox pushc,smsc,emailc,whatsappc,Promotional,Transactional;
     public int keyn = 0;
     public EditText ed[] = new EditText[20];
-    String[] stringArray1;
     ArrayList<String> newList	=	new	ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +35,18 @@ public class CreateUser extends AppCompatActivity {
         emailst1 = findViewById(R.id.emailet);
         numbst1 = findViewById(R.id.numbet);
         idst1 = findViewById(R.id.idet);
-        c1 = findViewById(R.id.pushc);
-        c2 = findViewById(R.id.smsc);
-        c3 = findViewById(R.id.emailc);
-        c4 = findViewById(R.id.whatsappc);
-        c1.setChecked(true);
-        c2.setChecked(true);
-        c3.setChecked(true);
-        c4.setChecked(true);
+        pushc = findViewById(R.id.pushc);
+        smsc = findViewById(R.id.smsc);
+        emailc = findViewById(R.id.emailc);
+        whatsappc = findViewById(R.id.whatsappc);
+        Promotional = findViewById(R.id.Promotional);
+        Transactional = findViewById(R.id.Transactional);
+        pushc.setChecked(true);
+        smsc.setChecked(true);
+        emailc.setChecked(true);
+        whatsappc.setChecked(true);
+        Promotional.setChecked(true);
+        Transactional.setChecked(true);
         HashMap<String, Object> userprop = new HashMap<String, Object>();
         findViewById(R.id.userpropv).setOnClickListener(v -> {
             LinearLayout ll = (LinearLayout) findViewById(R.id.ll1);
@@ -63,14 +66,26 @@ public class CreateUser extends AppCompatActivity {
             String numbst = numbst1.getText().toString();
             String idst = idst1.getText().toString();
             HashMap<String, Object> profileUpdate = new HashMap<String, Object>();
-            profileUpdate.put("Name", namest);    // String
-            profileUpdate.put("Identity", idst);      // String or number
-            profileUpdate.put("Email", emailst); // Email address of the user
+            profileUpdate.put("Name", namest);
+            profileUpdate.put("Identity", idst);
+            profileUpdate.put("Email", emailst);
             profileUpdate.put("Phone", numbst);
-            profileUpdate.put("MSG-push", c1.isChecked());
-            profileUpdate.put("MSG-sms", c2.isChecked());
-            profileUpdate.put("MSG-email", c3.isChecked());
-            profileUpdate.put("MSG-whatsapp", c4.isChecked());
+            profileUpdate.put("MSG-push", pushc.isChecked());
+            profileUpdate.put("MSG-sms", smsc.isChecked());
+            profileUpdate.put("MSG-email", emailc.isChecked());
+            profileUpdate.put("MSG-whatsapp", whatsappc.isChecked());
+
+            ArrayList<String> channelsub = new ArrayList<>();
+            if (Promotional.isChecked()) {
+                channelsub.add("Promotional");
+            }
+            if (Transactional.isChecked()) {
+                channelsub.add("Transactional");
+            }
+
+            profileUpdate.put("push channel", channelsub);
+
+            Log.d("clevertap","onuserloginpayload"+profileUpdate);
             clevertapDefaultInstance.onUserLogin(profileUpdate);
 //            clevertapDefaultInstance.pushProfile(profileUpdate);
             Toast.makeText(getApplicationContext(), "OnUserLogin Called", Toast.LENGTH_SHORT).show();

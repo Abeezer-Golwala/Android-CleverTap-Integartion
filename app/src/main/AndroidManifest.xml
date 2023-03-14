@@ -84,7 +84,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="open.my.customevent"
-                    android:scheme="app"/>
+                    android:scheme="https"/>
 <!--                    android:pathPrefix="/"/>-->
 
             </intent-filter>
@@ -97,13 +97,18 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter  android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="open.my.main"
+                    android:scheme="https"/>
+                <!--                    android:pathPrefix="/"/>-->
+
+            </intent-filter>
+
         </activity>
-<!--        <meta-data-->
-<!--            android:name="CLEVERTAP_ACCOUNT_ID"-->
-<!--            android:value="TEST-86Z-999-446Z" />-->
-<!--        <meta-data-->
-<!--            android:name="CLEVERTAP_TOKEN"-->
-<!--            android:value="TEST-ccc-16b" />-->
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
             android:value="TEST-468-W87-546Z" />
@@ -112,9 +117,6 @@
             android:value="TEST-ab0-b64" />
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
-            android:value="0" />
-        <meta-data
-            android:name="CLEVERTAP_BACKGROUND_SYNC"
             android:value="1" />
         <meta-data
             android:name="CLEVERTAP_REGION"
@@ -123,7 +125,7 @@
         <!-- android:name=".MyFcmMessageListenerService" -->
 <!--        android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"-->
 
-<!--         android:name=".MyFcmMessageListenerService"-->
+<!--         android:name="-->
         <service
                 android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"
             android:exported="true">

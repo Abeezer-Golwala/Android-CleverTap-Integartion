@@ -1,9 +1,15 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+
+import com.clevertap.android.pushtemplates.TemplateRenderer;
 import com.clevertap.android.sdk.pushnotification.fcm.CTFcmMessageHandler;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+
+
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyFcmMessageListenerService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage message){
