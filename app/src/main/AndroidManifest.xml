@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.myapplication"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <queries>
         <intent>
-            <action
-                android:name="android.intent.action.VIEW" />
-            <data
-                android:scheme="app" />
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="app" />
         </intent>
         <intent>
+            <action android:name="android.intent.action.VIEW" />
 
-            <action
-                android:name="android.intent.action.VIEW" />
-
-            <data
-                android:mimeType="application/uri" />
+            <data android:mimeType="application/uri" />
         </intent>
-
-    </queries>
-
-    <!-- Required to allow the app to send events and user profile information -->
+    </queries> <!-- Required to allow the app to send events and user profile information -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -29,34 +24,42 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<!--    android:name="com.clevertap.android.sdk.Application"-->
-    <application
 
+    <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/iconcircle"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@drawable/iconcircle"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".splashscreen"
+            android:exported="false"
+            android:label="test"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".loadingscreentest"
+            android:exported="false"
+            android:label="@string/title_activity_loadingscreentest"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
 
-         <meta-data
-         android:name="CLEVERTAP_NOTIFICATION_ICON"
-         android:value="iconcircle"/>
-
-        <!--         android:value="inv"/>-->
-<!--         invisible small icon -->
+        <meta-data
+            android:name="CLEVERTAP_NOTIFICATION_ICON"
+            android:value="iconcircle" /> <!-- android:value="inv"/> -->
+        <!-- invisible small icon -->
         <activity
             android:name=".CreateUser"
-            android:exported="true">
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="open.my.app"
                     android:scheme="app" />
@@ -64,12 +67,13 @@
         </activity>
         <activity
             android:name=".CustomEventActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="open.my.webview"
                     android:scheme="app" />
@@ -77,61 +81,67 @@
         </activity>
         <activity
             android:name=".webviewActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="open.my.customevent"
-                    android:scheme="https"/>
-<!--                    android:pathPrefix="/"/>-->
+                    android:scheme="app" />
+                <!-- android:pathPrefix="/"/> -->
 
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter  android:autoVerify="true" >
+            <intent-filter android:autoVerify="true" >
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="open.my.main"
-                    android:scheme="https"/>
-                <!--                    android:pathPrefix="/"/>-->
-
+                    android:scheme="app" />
             </intent-filter>
-
         </activity>
+
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
-            android:value="TEST-468-W87-546Z" />
+         android:value="TEST-468-W87-546Z" />
+
         <meta-data
             android:name="CLEVERTAP_TOKEN"
-            android:value="TEST-ab0-b64" />
+         android:value="TEST-ab0-b64"/>
+
+
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
-            android:value="1" />
+            android:value="0" />
         <meta-data
             android:name="CLEVERTAP_REGION"
             android:value="eu1" />
         <!-- Push notification code -->
         <!-- android:name=".MyFcmMessageListenerService" -->
-<!--        android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"-->
+        <!-- android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService" -->
+        <!-- android:name=" -->
 
-<!--         android:name="-->
         <service
-                android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"
-            android:exported="true">
+            android:name=".MyFcmMessageListenerService"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>
+
 </manifest>

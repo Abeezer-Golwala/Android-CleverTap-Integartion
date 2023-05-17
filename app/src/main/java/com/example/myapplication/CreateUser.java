@@ -1,9 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -13,10 +17,19 @@ import android.widget.Toast;
 
 import com.clevertap.android.sdk.CleverTapAPI;
 
+import com.clevertap.android.sdk.Constants;
+import com.clevertap.android.sdk.InAppNotificationListener;
+import com.clevertap.android.sdk.inapp.CTInAppNotification;
+import com.clevertap.android.sdk.inapp.CTLocalInApp;
+import com.clevertap.android.sdk.inapp.InAppListener;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class CreateUser extends AppCompatActivity {
+public class CreateUser extends AppCompatActivity  {
     EditText userpropkey,userpropvalue,namest1,emailst1,numbst1,idst1;
     CheckBox pushc,smsc,emailc,whatsappc,Promotional,Transactional;
     public int keyn = 0;
@@ -24,11 +37,34 @@ public class CreateUser extends AppCompatActivity {
     ArrayList<String> newList	=	new	ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        JSONObject jsonObject = CTLocalInApp.builder()
+                .setInAppType(CTLocalInApp.InAppType.HALF_INTERSTITIAL)
+                .setTitleText("Get Notified")
+                .setMessageText("Please enable notifications on your device to use Push Notifications.")
+                .followDeviceOrientation(true)
+                .setPositiveBtnText("Allow")
+                .setNegativeBtnText("Cancel")
+                .setBackgroundColor(Constants.WHITE)
+                .setBtnBorderColor(Constants.BLUE)
+                .setTitleTextColor(Constants.BLUE)
+                .setMessageTextColor(Constants.BLACK)
+                .setBtnTextColor(Constants.WHITE)
+                .setImageUrl("https://picsum.photos/id/237/64/64.jpg")
+                .setBtnBackgroundColor(Constants.BLUE)
+                .build();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+        CleverTapAPI.getDefaultInstance(getApplicationContext()).promptPushPrimer(jsonObject);
+            }
+        }, 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
+
         CleverTapAPI clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
         CleverTapAPI.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE);
-
         userpropkey = findViewById(R.id.upet1);
         userpropvalue = findViewById(R.id.upet2);
         namest1 = findViewById(R.id.nameet);
@@ -70,7 +106,8 @@ public class CreateUser extends AppCompatActivity {
             profileUpdate.put("Identity", idst);
             profileUpdate.put("Email", emailst);
             profileUpdate.put("Phone", numbst);
-            profileUpdate.put("MSG-push", pushc.isChecked());
+
+            profileUpdate.put("MSG-push", !pushc.isChecked());
             profileUpdate.put("MSG-sms", smsc.isChecked());
             profileUpdate.put("MSG-email", emailc.isChecked());
             profileUpdate.put("MSG-whatsapp", whatsappc.isChecked());
@@ -87,10 +124,13 @@ public class CreateUser extends AppCompatActivity {
 
             Log.d("clevertap","onuserloginpayload"+profileUpdate);
             clevertapDefaultInstance.onUserLogin(profileUpdate);
-//            clevertapDefaultInstance.pushProfile(profileUpdate);
             Toast.makeText(getApplicationContext(), "OnUserLogin Called", Toast.LENGTH_SHORT).show();
+//
+//            Intent i = new Intent(CreateUser.this, loadingscreentest.class);
+//            CreateUser.this.startActivity(i);
 
         });
+        clevertapDefaultInstance.setOffline(!pushc.isChecked());
         //Get Upload user
         findViewById(R.id.userpropbt).setOnClickListener(v -> {
             String upkey = userpropkey.getText().toString();
@@ -107,6 +147,7 @@ public class CreateUser extends AppCompatActivity {
     protected void onNewIntent(final Intent intent) {
         super.onNewIntent(intent);
 
+
         /**
          * On Android 12, clear notification on CTA click when Activity is already running in activity backstack
          */
@@ -115,4 +156,6 @@ public class CreateUser extends AppCompatActivity {
             NotificationUtils.dismissNotification(intent, getApplicationContext());
         }
     }
+
+
 }
