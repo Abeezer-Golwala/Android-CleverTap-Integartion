@@ -1,16 +1,33 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+
+import com.clevertap.android.pushtemplates.TemplateRenderer;
+import com.clevertap.android.sdk.CleverTapAPI;
+import com.clevertap.android.sdk.pushnotification.NotificationInfo;
 import com.clevertap.android.sdk.pushnotification.fcm.CTFcmMessageHandler;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
+
+import java.util.Map;
+import java.util.Random;
+
 
 public class MyFcmMessageListenerService extends FirebaseMessagingService {
     @Override
-    public void onMessageReceived(RemoteMessage message){
-        new CTFcmMessageHandler().createNotification(this, message);
+    public void onMessageReceived(RemoteMessage message) {
+        super.onMessageReceived(message);
+        new CTFcmMessageHandler().createNotification(getApplicationContext(), message);
     }
 }
-
 //
 //
 //

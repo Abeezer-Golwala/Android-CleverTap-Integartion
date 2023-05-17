@@ -135,6 +135,32 @@
                     android:id="@+id/whatsappc"
                     android:text="Whatsapp"/>
             </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_marginLeft="30sp"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20sp"
+                    android:textSize="20sp"
+                    android:text="Push Category"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="fill_parent">
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/Promotional"
+                    android:text="Promotional"/>
+                <CheckBox
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/Transactional"
+                    android:text="Transactional"/>
+            </TableRow>
         </TableLayout>
 
         <Button
@@ -185,7 +211,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/roundedcorners"
             android:layout_below="@+id/ll1"
-            android:text="Upload User Properites" />
+            android:text="Upload User Properties" />
 
         <Button
             android:id="@+id/userpropv"
