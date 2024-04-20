@@ -150,20 +150,20 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
         CTGeofenceAPI.getInstance(this)
                 .setOnGeofenceApiInitializedListener(() -> {
                     //App is notified on the main thread that CTGeofenceAPI is initialized
-                    Log.e("-OnGeofenceApiInitialized-", "-----OnGeofenceApiInitialized----=");
+                    Log.e("CleverTap", "-----OnGeofenceApiInitialized----=");
                 });
         CTGeofenceAPI.getInstance(this)
                 .setCtGeofenceEventsListener(new CTGeofenceEventsListener() {
                     @Override
                     public void onGeofenceEnteredEvent(JSONObject jsonObject) {
                         //Callback on the main thread when the user enters Geofence with info in jsonObject
-                        Log.e("-onGeofenceEnteredEvent-", "-----onGeofenceEnteredEvent-----=" + jsonObject.toString());
+                        Log.e("CleverTap", "-----onGeofenceEnteredEvent-----=" + jsonObject.toString());
                     }
 
                     @Override
                     public void onGeofenceExitedEvent(JSONObject jsonObject) {
                         //Callback on the main thread when user exits Geofence with info in jsonObject
-                        Log.e("-onGeofenceExitedEvent-", "-----onGeofenceEnteredEvent-----=" + jsonObject.toString());
+                        Log.e("CleverTap", "-----onGeofenceExitedEvent-----=" + jsonObject.toString());
                     }
                 });
 
