@@ -66,7 +66,7 @@ public class CreateUser extends AppCompatActivity {
         });
         //create user function
         findViewById(R.id.cubt).setOnClickListener(v -> {
-            Log.d("CreatFunct", "CreatFunct");
+            Log.d("CreateFunc", "CreateFunc");
             String namest = namest1.getText().toString();
             String emailst = emailst1.getText().toString();
             String numbst = numbst1.getText().toString();

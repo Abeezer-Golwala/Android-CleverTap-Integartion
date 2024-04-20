@@ -35,7 +35,6 @@ import java.util.HashMap;
 
 public class MainActivityBackup extends AppCompatActivity implements CTInboxListener, DisplayUnitListener, LocationListener, CTPushNotificationListener {
     protected LocationManager locationManager;
-    protected LocationListener locationListener;
     Button createu, pushpbt, appinbox, getmsg, inappnotif;
     SliderView sliderView;
     ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
@@ -62,20 +61,12 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
         getmsg = findViewById(R.id.getmsg);
         inappnotif = findViewById(R.id.inappnotif);
         sliderView = findViewById(R.id.slider);
-        appinbox.setOnClickListener(v -> {
-            clevertapDefaultInstance.showAppInbox();
-        });
-        getmsg.setOnClickListener(v -> {
-            clevertapDefaultInstance.pushEvent("Abeezergetmsg");
-        });
+        appinbox.setOnClickListener(v -> clevertapDefaultInstance.showAppInbox());
+        getmsg.setOnClickListener(v -> clevertapDefaultInstance.pushEvent("Abeezergetmsg"));
 
 
-        pushpbt.setOnClickListener(v -> {
-            clevertapDefaultInstance.pushEvent("AbeezerPushEvent");
-        });
-        inappnotif.setOnClickListener(v -> {
-            clevertapDefaultInstance.pushEvent("abeezerinapnotif");
-        });
+        pushpbt.setOnClickListener(v -> clevertapDefaultInstance.pushEvent("AbeezerPushEvent"));
+        inappnotif.setOnClickListener(v -> clevertapDefaultInstance.pushEvent("abeezerinapnotif"));
         findViewById(R.id.pushev).setOnClickListener(v -> {
             Intent i = new Intent(MainActivityBackup.this, CustomEventActivity.class);
             MainActivityBackup.this.startActivity(i);
