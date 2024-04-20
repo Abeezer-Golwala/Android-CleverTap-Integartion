@@ -55,7 +55,7 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
         }
         CleverTapAPI.getDefaultInstance(this).setDisplayUnitListener(this);
 
-        CleverTapAPI.getDefaultInstance(this).setCTPushNotificationListener((CTPushNotificationListener) this);
+        CleverTapAPI.getDefaultInstance(this).setCTPushNotificationListener(this);
         createu = findViewById(R.id.createuser);
         pushpbt = findViewById(R.id.pushnotification);
         appinbox = findViewById(R.id.appinbox);
@@ -153,7 +153,7 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
             CTGeofenceAPI.getInstance(this).triggerLocation();
         } catch (Exception e) {
             // thrown when this method is called before geofence SDK initialization
-            Log.e("-Exception.triggerLocation-", "=" + e.toString());
+            Log.e("-Exception.triggerLocation-", "=" + e);
         }
 
         CTGeofenceAPI.getInstance(this)

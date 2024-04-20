@@ -15,8 +15,8 @@ import java.util.HashMap;
 
 public class CustomEventActivity extends AppCompatActivity {
     public int keyn = 0;
-    public EditText ed[] = new EditText[20];
-    public EditText ed1[] = new EditText[20];
+    public EditText[] ed = new EditText[20];
+    public EditText[] ed1 = new EditText[20];
     EditText eventname;
 
     @Override
@@ -28,7 +28,7 @@ public class CustomEventActivity extends AppCompatActivity {
         HashMap<String, Object> eventpropl = new HashMap<String, Object>();
         eventname = findViewById(R.id.eventName);
         findViewById(R.id.addprop).setOnClickListener(v -> {
-            LinearLayout ll = (LinearLayout) findViewById(R.id.ll1);
+            LinearLayout ll = findViewById(R.id.ll1);
             ed[keyn] = new EditText(CustomEventActivity.this);
             ed[keyn].setId(keyn);
             ed[keyn].setHint("Enter Event Property Key");

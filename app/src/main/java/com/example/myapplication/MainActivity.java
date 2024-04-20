@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
 
         clevertapDefaultInstance.setCTInboxMessageListener(this);
         clevertapDefaultInstance.setDisplayUnitListener(this);
-        clevertapDefaultInstance.setInAppNotificationListener((InAppNotificationListener) this);
+        clevertapDefaultInstance.setInAppNotificationListener(this);
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
         if (clevertapDefaultInstance != null) {
             //Set the Notification Inbox Listener
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
             CTGeofenceAPI.getInstance(this).triggerLocation();
         } catch (Exception e) {
             // thrown when this method is called before geofence SDK initialization
-            Log.e("clevertap Exception.triggerLocation", "=" + e.toString());
+            Log.e("clevertap Exception.triggerLocation", "=" + e);
         }
 
         CTGeofenceAPI.getInstance(this).setOnGeofenceApiInitializedListener(() -> {
@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         CleverTapAPI cleverTapAPI = CleverTapAPI.getDefaultInstance(getApplicationContext());
 //        cleverTapAPI.getLocation();
 //        cleverTapAPI.setLocation(cleverTapAPI.getLocation()); //android.location.Location
-        Log.d("CleverTap T Default", "location Default" + location.toString());
+        Log.d("CleverTap T Default", "location Default" + location);
 
         Log.d("CleverTap T CT", "location CT" + cleverTapAPI.getLocation());
     }

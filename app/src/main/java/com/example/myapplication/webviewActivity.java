@@ -18,7 +18,7 @@ public class webviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-        WebView mywebview = (WebView) findViewById(R.id.webview);
+        WebView mywebview = findViewById(R.id.webview);
 //        CleverTapInstanceConfig config =  CleverTapInstanceConfig.createInstance(this,"86K-6R8-W66Z","TEST-b26-36b");
 //        CleverTapAPI cleverTapAPI = CleverTapAPI.instanceWithConfig(this,config);
         mywebview.addJavascriptInterface(new CTWebInterface(CleverTapAPI.getDefaultInstance(this)), "CleverTap");

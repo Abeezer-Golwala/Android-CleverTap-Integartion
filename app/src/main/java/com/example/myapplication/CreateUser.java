@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class CreateUser extends AppCompatActivity {
     public int keyn = 0;
-    public EditText ed[] = new EditText[20];
+    public EditText[] ed = new EditText[20];
     EditText userpropkey, userpropvalue, namest1, emailst1, numbst1, idst1;
     CheckBox pushc, smsc, emailc, whatsappc, Promotional, Transactional;
     ArrayList<String> newList = new ArrayList<String>();
@@ -55,7 +55,7 @@ public class CreateUser extends AppCompatActivity {
         Transactional.setChecked(true);
         HashMap<String, Object> userprop = new HashMap<String, Object>();
         findViewById(R.id.userpropv).setOnClickListener(v -> {
-            LinearLayout ll = (LinearLayout) findViewById(R.id.ll1);
+            LinearLayout ll = findViewById(R.id.ll1);
             ed[keyn] = new EditText(CreateUser.this);
             ed[keyn].setId(keyn);
             ed[keyn].setHint("Enter Custom User Property Value");

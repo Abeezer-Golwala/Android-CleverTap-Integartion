@@ -23,11 +23,6 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".splashscreen"
-            android:exported="false"
-            android:label="test"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
-        <activity
             android:name=".loadingscreentest"
             android:exported="false"
             android:label="@string/title_activity_loadingscreentest"
