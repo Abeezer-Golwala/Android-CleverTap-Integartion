@@ -53,7 +53,7 @@ public class CreateUser extends AppCompatActivity {
         whatsappc.setChecked(true);
         Promotional.setChecked(true);
         Transactional.setChecked(true);
-        HashMap<String, Object> userprop = new HashMap<String, Object>();
+        HashMap<String, Object> userprop = new HashMap<>();
         findViewById(R.id.userpropv).setOnClickListener(v -> {
             LinearLayout ll = findViewById(R.id.ll1);
             ed[keyn] = new EditText(CreateUser.this);
@@ -71,7 +71,7 @@ public class CreateUser extends AppCompatActivity {
             String emailst = emailst1.getText().toString();
             String numbst = numbst1.getText().toString();
             String idst = idst1.getText().toString();
-            HashMap<String, Object> profileUpdate = new HashMap<String, Object>();
+            HashMap<String, Object> profileUpdate = new HashMap<>();
             profileUpdate.put("Identity", idst);
             profileUpdate.put("Name", namest);
 

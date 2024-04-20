@@ -55,6 +55,8 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
         CleverTapAPI.getDefaultInstance(this).setDisplayUnitListener(this);
 
         CleverTapAPI.getDefaultInstance(this).setCTPushNotificationListener(this);
+
+        setupCleverTapGeofence();
         createu = findViewById(R.id.createuser);
         pushpbt = findViewById(R.id.pushnotification);
         appinbox = findViewById(R.id.appinbox);
