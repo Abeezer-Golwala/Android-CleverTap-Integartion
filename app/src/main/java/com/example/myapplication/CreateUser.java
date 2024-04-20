@@ -22,7 +22,7 @@ public class CreateUser extends AppCompatActivity {
     public EditText[] ed = new EditText[20];
     EditText userpropkey, userpropvalue, namest1, emailst1, numbst1, idst1;
     CheckBox pushc, smsc, emailc, whatsappc, Promotional, Transactional;
-    ArrayList<String> newList = new ArrayList<String>();
+    ArrayList<String> newList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
