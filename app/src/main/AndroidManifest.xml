@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
 
-            <data android:scheme="app" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-
-            <data android:mimeType="application/uri" />
-        </intent>
-    </queries> <!-- Required to allow the app to send events and user profile information -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -22,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!--    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
@@ -34,7 +21,7 @@
         android:roundIcon="@drawable/iconcircle"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".splashscreen"
             android:exported="false"
@@ -48,11 +35,15 @@
 
         <meta-data
             android:name="CLEVERTAP_NOTIFICATION_ICON"
-            android:value="iconcircle" /> <!-- android:value="inv"/> -->
+            android:value="testicon" />
+
+
+        <!--            android:value="inv" />-->
+        <!--        android:value="iconcircle" />-->
         <!-- invisible small icon -->
         <activity
             android:name=".CreateUser"
-            android:exported="true" >
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -67,7 +58,7 @@
         </activity>
         <activity
             android:name=".CustomEventActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -81,7 +72,7 @@
         </activity>
         <activity
             android:name=".webviewActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -97,19 +88,21 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter android:autoVerify="true" >
+            <intent-filter android:autoVerify="true">
 
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
+
                     android:host="open.my.main"
                     android:scheme="app" />
             </intent-filter>
@@ -117,27 +110,32 @@
 
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
-         android:value="TEST-468-W87-546Z" />
+            android:value="TEST-468-W87-546Z" />
+        <!--            android:value="TEST-6K5-5R8-K96Z" />-->
+        <!--            android:value="W6Z-6Z5-975Z" />-->
+        <!--            android:value="TEST-86K-6R8-W66Z" />-->
+
 
         <meta-data
             android:name="CLEVERTAP_TOKEN"
-         android:value="TEST-ab0-b64"/>
-
+            android:value="TEST-ab0-b64" />
+        <!--            android:value="ab1-504" />-->
+        <!--            android:value="TEST-b25-536" />-->
+        <!--            android:value="516-160" />-->
+        <!--            android:value="TEST-b26-36b"/>-->
 
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
             android:value="0" />
         <meta-data
-            android:name="CLEVERTAP_REGION"
-            android:value="eu1" />
-        <!-- Push notification code -->
-        <!-- android:name=".MyFcmMessageListenerService" -->
-        <!-- android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService" -->
-        <!-- android:name=" -->
+            android:name="CLEVERTAP_ENCRYPTION_LEVEL"
+            android:value="1" />
 
+        <!-- Push notification code -->
+        <!-- android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService" -->
         <service
             android:name=".MyFcmMessageListenerService"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

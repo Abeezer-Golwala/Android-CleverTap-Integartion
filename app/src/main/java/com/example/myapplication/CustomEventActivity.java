@@ -1,24 +1,24 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.clevertap.android.sdk.CleverTapAPI;
 
 import java.util.HashMap;
 
 public class CustomEventActivity extends AppCompatActivity {
-    EditText eventname;
     public int keyn = 0;
     public EditText ed[] = new EditText[20];
     public EditText ed1[] = new EditText[20];
+    EditText eventname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +27,8 @@ public class CustomEventActivity extends AppCompatActivity {
         CleverTapAPI.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE);
         HashMap<String, Object> eventpropl = new HashMap<String, Object>();
         eventname = findViewById(R.id.eventName);
-        findViewById(R.id.addprop).setOnClickListener(v->{
-            LinearLayout ll = (LinearLayout)findViewById(R.id.ll1);
+        findViewById(R.id.addprop).setOnClickListener(v -> {
+            LinearLayout ll = (LinearLayout) findViewById(R.id.ll1);
             ed[keyn] = new EditText(CustomEventActivity.this);
             ed[keyn].setId(keyn);
             ed[keyn].setHint("Enter Event Property Key");
@@ -42,17 +42,17 @@ public class CustomEventActivity extends AppCompatActivity {
             ll.addView(ed1[keyn]);
             keyn++;
         });
-        findViewById(R.id.uploadev).setOnClickListener(v->{
+        findViewById(R.id.uploadev).setOnClickListener(v -> {
             String evn = eventname.getText().toString();
-            for(int i = 0;i<keyn;i++){
+            for (int i = 0; i < keyn; i++) {
 
-                eventpropl.put(ed[i].getText().toString(),ed1[i].getText().toString());
-                Log.d("Eveprop",""+eventpropl);
+                eventpropl.put(ed[i].getText().toString(), ed1[i].getText().toString());
+                Log.d("Eve-prop", "" + eventpropl);
             }
-            Log.d("Mapd","mapd"+eventpropl);
+            Log.d("Mapd", "mapd" + eventpropl);
             clevertapDefaultInstance.pushEvent(evn, eventpropl);
             eventpropl.clear();
-            Toast.makeText(getApplicationContext(),"Event Pushed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Event Pushed", Toast.LENGTH_SHORT).show();
 
         });
     }

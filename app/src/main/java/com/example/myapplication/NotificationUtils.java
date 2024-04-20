@@ -4,10 +4,11 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class NotificationUtils {
     //Require to close notification on action button click
-    public static void dismissNotification(Intent intent, Context applicationContext){
+    public static void dismissNotification(Intent intent, Context applicationContext) {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             String actionId = extras.getString("actionId");
@@ -17,7 +18,9 @@ public class NotificationUtils {
                 if (autoCancel && notificationId > -1) {
                     NotificationManager notifyMgr =
                             (NotificationManager) applicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
-                    notifyMgr.cancel(notificationId);                }
+                    Log.d("CleverTap", "dismissNotification: " + notificationId);
+                    notifyMgr.cancel(notificationId);
+                }
 
             }
         }

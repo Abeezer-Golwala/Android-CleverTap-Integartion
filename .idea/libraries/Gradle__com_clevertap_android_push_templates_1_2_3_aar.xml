@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.clevertap.android:push-templates:1.2.3@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/86bd264628144f6254648a974786b1c5/transformed/jetified-push-templates-1.2.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/86bd264628144f6254648a974786b1c5/transformed/jetified-push-templates-1.2.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/86bd264628144f6254648a974786b1c5/transformed/jetified-push-templates-1.2.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

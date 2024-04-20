@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.exoplayer:exoplayer-decoder:2.19.1@aar" external-system-id="GRADLE">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/6d517d840036138a464ea833a12c49cf/transformed/jetified-exoplayer-decoder-2.19.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/6d517d840036138a464ea833a12c49cf/transformed/jetified-exoplayer-decoder-2.19.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/6d517d840036138a464ea833a12c49cf/transformed/jetified-exoplayer-decoder-2.19.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-decoder/2.19.1/6a801cd141e0f68a13333aed03a9fc8f41c4151/exoplayer-decoder-2.19.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
