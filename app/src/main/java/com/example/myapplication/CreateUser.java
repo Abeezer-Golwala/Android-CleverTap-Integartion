@@ -127,11 +127,6 @@ public class CreateUser extends AppCompatActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         super.onNewIntent(intent);
-
-
-        /**
-         * On Android 12, clear notification on CTA click when Activity is already running in activity backstack
-         */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CleverTapAPI.getDefaultInstance(getApplicationContext()).pushNotificationClickedEvent(intent.getExtras());
             NotificationUtils.dismissNotification(intent, getApplicationContext());

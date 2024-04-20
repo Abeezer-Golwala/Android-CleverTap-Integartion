@@ -144,7 +144,7 @@ public class MainActivityBackup extends AppCompatActivity implements CTInboxList
             CTGeofenceAPI.getInstance(this).triggerLocation();
         } catch (Exception e) {
             // thrown when this method is called before geofence SDK initialization
-            Log.e("-Exception.triggerLocation-", "=" + e);
+            Log.e("CleverTap", "-Exception.triggerLocation-=" + e);
         }
 
         CTGeofenceAPI.getInstance(this)
