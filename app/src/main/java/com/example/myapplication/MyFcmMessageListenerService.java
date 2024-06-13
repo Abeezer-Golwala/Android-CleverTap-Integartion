@@ -1,14 +1,7 @@
 package com.example.myapplication;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 
@@ -48,50 +41,4 @@ public class MyFcmMessageListenerService extends FirebaseMessagingService {
         }
 
     }
-
-    private void sendNotification(String gifUrl) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("abtest", "GIF Notifications", NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        // Create custom notification layout
-        RemoteViews notificationLayout = new RemoteViews(getPackageName(), R.layout.notification_layout);
-
-        // Load GIF using Glide
-//        Glide.with(this)
-//                .asGif()
-//                .load(gifUrl)
-//                .into(new CustomTarget<Drawable>() {
-//                    @Override
-//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-//                        // Set the GIF drawable to ImageView in custom layout
-//                        notificationLayout.setImageViewBitmap(resource);
-//
-//                        // Build the notification
-//                        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MyFcmMessageListenerService.this, "abtest")
-//                                .setSmallIcon(R.drawable.testicon)
-//                                .setContentTitle("GIF Notification")
-//                                .setContentText("You've received a new GIF")
-//                                .setCustomBigContentView(notificationLayout)
-//                                .setContentIntent(pendingIntent)
-//                                .setAutoCancel(true);
-//
-//                        // Show the notification
-//                        notificationManager.notify(0, notificationBuilder.build());
-//                    }
-//
-//                    @Override
-//                    public void onLoadCleared(@Nullable Drawable placeholder) {
-//
-//                    }
-//                });
-    }
-
 }
