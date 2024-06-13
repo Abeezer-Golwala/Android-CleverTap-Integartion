@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         test1 = clevertapDefaultInstance.featureFlag().get("Keyete", true);
         Log.d("CleverTap", "testprod" + test1);
         clevertapDefaultInstance.setDisplayUnitListener(this);
-        clevertapDefaultInstance.setInAppNotificationListener(this);
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
         if (clevertapDefaultInstance != null) {
             //Set the Notification Inbox Listener
