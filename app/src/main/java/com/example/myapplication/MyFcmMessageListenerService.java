@@ -34,7 +34,6 @@ public class MyFcmMessageListenerService extends FirebaseMessagingService {
 //            CleverTapAPI.createNotificationChannel(this, , "abtest", "clevertap channel", 3, true, extras.get("wzrk_sound").toString());
         }
         new CTFcmMessageHandler().createNotification(getApplicationContext(), message);
-        CleverTapAPI.getDefaultInstance(this).pushNotificationViewedEvent(extras);
         Log.d("notClevertap", "data in remote message" + extras);
         if (message.getNotification() != null) {
             Log.d("notClevertap", "data in remote message" + message.getNotification().getTitle());
