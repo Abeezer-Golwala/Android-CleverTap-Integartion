@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.exoplayer:exoplayer-rtsp:2.19.1@aar" external-system-id="GRADLE">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/1328aacf6daa7ff29ac2c02afbaeecba/transformed/jetified-exoplayer-rtsp-2.19.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/d2a7e0d35080ab1d477144d96cdcc0ba/transformed/jetified-exoplayer-rtsp-2.19.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/1328aacf6daa7ff29ac2c02afbaeecba/transformed/jetified-exoplayer-rtsp-2.19.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/1328aacf6daa7ff29ac2c02afbaeecba/transformed/jetified-exoplayer-rtsp-2.19.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-4/d2a7e0d35080ab1d477144d96cdcc0ba/transformed/jetified-exoplayer-rtsp-2.19.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-4/d2a7e0d35080ab1d477144d96cdcc0ba/transformed/jetified-exoplayer-rtsp-2.19.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

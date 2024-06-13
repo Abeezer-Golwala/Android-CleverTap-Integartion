@@ -22,11 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".loadingscreentest"
-            android:exported="false"
-            android:label="@string/title_activity_loadingscreentest"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
+
 
         <meta-data
             android:name="CLEVERTAP_NOTIFICATION_ICON"
@@ -75,8 +71,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="open.my.customevent"
+
+                    android:host="open.my.main"
                     android:scheme="app" />
+                <!--                <data-->
+                <!--                    android:host="open.my.customevent"-->
+                <!--                    android:scheme="app" />-->
                 <!-- android:pathPrefix="/"/> -->
 
             </intent-filter>

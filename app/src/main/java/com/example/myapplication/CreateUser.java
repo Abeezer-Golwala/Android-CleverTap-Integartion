@@ -34,7 +34,6 @@ public class CreateUser extends AppCompatActivity {
         CleverTapAPI clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
         CleverTapAPI.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE);
         CleverTapAPI.createNotificationChannel(getApplicationContext(), "Promotional", "abtest", "test ab", 5, true);
-
         userpropkey = findViewById(R.id.upet1);
         userpropvalue = findViewById(R.id.upet2);
         namest1 = findViewById(R.id.nameet);

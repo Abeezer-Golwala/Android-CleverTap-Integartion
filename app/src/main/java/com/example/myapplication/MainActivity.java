@@ -15,7 +15,6 @@ import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -26,14 +25,12 @@ import com.clevertap.android.geofence.interfaces.CTGeofenceEventsListener;
 import com.clevertap.android.sdk.CTInboxListener;
 import com.clevertap.android.sdk.CTInboxStyleConfig;
 import com.clevertap.android.sdk.CleverTapAPI;
-import com.clevertap.android.sdk.InAppNotificationListener;
+import com.clevertap.android.sdk.InAppNotificationButtonListener;
 import com.clevertap.android.sdk.InboxMessageListener;
 import com.clevertap.android.sdk.displayunits.DisplayUnitListener;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnit;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnitContent;
-import com.clevertap.android.sdk.inapp.CTInAppNotification;
 import com.clevertap.android.sdk.inapp.CTLocalInApp;
-import com.clevertap.android.sdk.inapp.InAppListener;
 import com.clevertap.android.sdk.inbox.CTInboxMessage;
 import com.smarteist.autoimageslider.SliderView;
 
@@ -41,9 +38,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements CTInboxListener, DisplayUnitListener, LocationListener, InboxMessageListener, CTGeofenceEventsListener, InAppListener, InAppNotificationListener {
+public class MainActivity extends AppCompatActivity implements CTInboxListener, DisplayUnitListener, LocationListener, InboxMessageListener, CTGeofenceEventsListener, InAppNotificationButtonListener {
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     Button createu, pushpbt, appinbox, getmsg, inappnotif;
@@ -75,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(this);
@@ -88,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
 
 
         clevertapDefaultInstance.setCTInboxMessageListener(this);
+        boolean test1;
+        test1 = clevertapDefaultInstance.featureFlag().get("Keyete", true);
+        Log.d("CleverTap", "testprod" + test1);
         clevertapDefaultInstance.setDisplayUnitListener(this);
         clevertapDefaultInstance.setInAppNotificationListener(this);
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainActivity.this);
@@ -100,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         }
 
         Log.d("clevertap123", "test");
+        clevertapDefaultInstance.setInAppNotificationButtonListener(this);
 
 
         handler.postDelayed(() -> {
@@ -296,44 +295,9 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         Log.e("-onGeofenceExitedEvent-", "-----onGeofenceEnteredEvent-----=" + jsonObject.toString());
     }
 
-    @Override
-    public void inAppNotificationDidClick(@SuppressLint("RestrictedApi") CTInAppNotification ctInAppNotification, Bundle bundle, HashMap<String, String> hashMap) {
-
-    }
 
     @Override
-    public void inAppNotificationDidDismiss(Context context, @SuppressLint("RestrictedApi") CTInAppNotification ctInAppNotification, Bundle bundle) {
-
-    }
-
-    @SuppressLint("RestrictedApi")
-    @Override
-    public void inAppNotificationDidShow(CTInAppNotification ctInAppNotification, Bundle bundle) {
-        Log.d("CleverTap", "inapp data" + ctInAppNotification.getActionExtras());
-        CleverTapAPI.getDefaultInstance(this).resumeInAppNotifications();
-
-
-    }
-
-    @Override
-    public boolean beforeShow(Map<String, Object> map) {
-        Log.d("CleverTap", "inapp data 1" + map);
-
-        CleverTapAPI.getDefaultInstance(this).resumeInAppNotifications();
-
-        return true;
-    }
-
-    @SuppressLint("RestrictedApi")
-    @Override
-    public void onShow(@SuppressLint("RestrictedApi") CTInAppNotification ctInAppNotification) {
-        Log.d("CleverTap", "inapp data 2" + ctInAppNotification.getButtons().get(0).getKeyValues());
-
-        CleverTapAPI.getDefaultInstance(this).resumeInAppNotifications();
-    }
-
-    @Override
-    public void onDismissed(Map<String, Object> map, @Nullable Map<String, Object> map1) {
-
+    public void onInAppButtonClick(HashMap<String, String> hashMap) {
+        Log.d("CleverTap", "Button click callback" + hashMap);
     }
 }
