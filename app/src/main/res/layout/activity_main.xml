@@ -2,21 +2,21 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relative1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:padding="16dp">
 
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/slider"
             android:layout_width="match_parent"
-
             android:layout_height="200dp"
             app:sliderAnimationDuration="600"
             app:sliderAutoCycleDirection="back_and_forth"
@@ -27,96 +27,113 @@
             app:sliderIndicatorOrientation="horizontal"
             app:sliderIndicatorPadding="3dp"
             app:sliderIndicatorRadius="2dp"
-            app:sliderIndicatorSelectedColor="#5A5A5A"
-            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderIndicatorSelectedColor="?attr/colorOnBackground"
+            app:sliderIndicatorUnselectedColor="?attr/colorBackgroundFloating"
             app:sliderScrollTimeInSec="1" />
 
-        <Button
-            android:id="@+id/createuser"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/slider"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundedcorners"
-            android:text="Create User Profile" />
-
-        <Button
-            android:id="@+id/pushnotification"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/slider"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/roundedcorners"
-            android:text="Push notification" />
-
-        <Button
-            android:id="@+id/appinbox"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/pushnotification"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundedcorners"
-            android:text="App inbox" />
-
-        <Button
-            android:id="@+id/getmsg"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/pushnotification"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/roundedcorners"
-            android:text="Get App inbox message" />
-
-        <Button
-            android:id="@+id/inappnotif"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/getmsg"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundedcorners"
-            android:text="In App" />
-
-
-        <Button
-            android:id="@+id/pushev"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/getmsg"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/roundedcorners"
-            android:text="Push Custom Events" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pushev"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp">
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@android:color/transparent">
 
-            <Button
-                android:id="@+id/webview"
-                android:layout_width="350sp"
-                android:layout_height="100sp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false">
 
-                android:background="@drawable/roundedcorners"
-                android:text="Open Webview" />
-        </RelativeLayout>
-    </RelativeLayout>
+                <!-- First Row -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/createuser"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:text="Create User Profile"
+                    app:layout_constraintEnd_toStartOf="@+id/pushnotification"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.42" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/pushnotification"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Push Notification"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/createuser"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.42" />
+
+                <!-- Second Row -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/appinbox"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:text="App Inbox"
+                    app:layout_constraintEnd_toStartOf="@+id/getmsg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/createuser"
+                    app:layout_constraintWidth_percent="0.42" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/getmsg"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Get Inbox Message"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appinbox"
+                    app:layout_constraintTop_toBottomOf="@+id/pushnotification"
+                    app:layout_constraintWidth_percent="0.42" />
+
+                <!-- Third Row -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/inappnotif"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:text="In App"
+                    app:layout_constraintEnd_toStartOf="@+id/pushev"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appinbox"
+                    app:layout_constraintWidth_percent="0.42" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/pushev"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Push Custom Events"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/inappnotif"
+                    app:layout_constraintTop_toBottomOf="@+id/getmsg"
+                    app:layout_constraintWidth_percent="0.42" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/webview"
+                    style="@style/CleverTapButton.Red"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+
+                    android:text="Open Webview"
+                    app:layout_constraintTop_toBottomOf="@+id/inappnotif" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
 </ScrollView>

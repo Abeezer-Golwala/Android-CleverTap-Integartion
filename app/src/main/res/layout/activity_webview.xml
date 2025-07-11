@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true"
+    android:padding="16dp"
     tools:context=".webviewActivity">
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="50sp"
-        android:layout_marginTop="30sp"
-        android:id="@+id/url"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/urlInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="@android:color/transparent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter URL here"
+            android:imeOptions="actionDone"
+            android:inputType="textUri" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/openurl"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_below="@+id/url"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/urlInputLayout"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/roundedcorners"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Open Link" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/openurl"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
     <WebView
         android:id="@+id/webview"
-        android:layout_below="@+id/openurl"
-        android:background="@drawable/roundedcorners"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/openurl" />
 </RelativeLayout>
-</ScrollView>

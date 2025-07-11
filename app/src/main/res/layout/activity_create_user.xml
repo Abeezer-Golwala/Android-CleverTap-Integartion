@@ -1,253 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:fitsSystemWindows="true"
+    android:padding="20dp"
     tools:context=".CreateUser">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white_box"
+        android:elevation="4dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <TableLayout
-            android:id="@+id/t1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:id="@+id/namet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginTop="20sp"
-                    android:text="Name"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/nameet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
-                    android:hint="Enter Name"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:paddingTop="20sp"
-                    android:text="Email"
-
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/emailet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Email"
-                    android:paddingTop="20sp"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:paddingTop="20sp"
-                    android:text="Number"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/numbet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Contact Number"
-
-                    android:paddingTop="20sp"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:paddingTop="20sp"
-                    android:text="Identity"
-
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/idet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Identity"
-                    android:paddingTop="20sp"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-
-                android:layout_marginLeft="30sp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20sp"
-                    android:text="Set Reachability"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_horizontal">
-
-                <CheckBox
-                    android:id="@+id/pushc"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-
-
-                    android:text="Push" />
-
-                <CheckBox
-                    android:id="@+id/smsc"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="SMS" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_horizontal">
-
-                <CheckBox
-                    android:id="@+id/emailc"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Email" />
-
-                <CheckBox
-                    android:id="@+id/whatsappc"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Whatsapp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="30sp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20sp"
-                    android:text="Push Category"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_horizontal">
-
-                <CheckBox
-                    android:id="@+id/Promotional"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Promotional" />
-
-                <CheckBox
-                    android:id="@+id/Transactional"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Transactional" />
-            </TableRow>
-        </TableLayout>
-
-        <Button
-            android:id="@+id/cubt"
+        <!-- Section: Basic Info -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/t1"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/roundedcorners"
-            android:text="Create User Profile" />
+            android:layout_marginBottom="16dp"
+            android:text="User Details"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
+        <!-- Reusable input field style -->
+        <EditText
+            android:id="@+id/nameet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_bg_dark"
+            android:hint="Enter Name"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/emailet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_bg_dark"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/numbet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_bg_dark"
+            android:hint="Enter Contact Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/idet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_bg_dark"
+            android:hint="Enter Identity"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Label -->
+            <TextView
+                android:id="@+id/label_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="Select DOB"
+                android:textSize="16sp" />
+
+            <!-- DOB EditText -->
+            <EditText
+                android:id="@+id/dob"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg_dark"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Section: Reachability -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Set Reachability"
+            android:textColor="#555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <CheckBox
+                android:id="@+id/pushc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Push" />
+
+            <CheckBox
+                android:id="@+id/smsc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+
+                android:text="SMS" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <CheckBox
+                android:id="@+id/emailc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+
+                android:text="Email" />
+
+            <CheckBox
+                android:id="@+id/whatsappc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="WhatsApp" />
+        </LinearLayout>
+
+        <!-- Section: Push Category -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Push Category"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <CheckBox
+                android:id="@+id/Promotional"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:checked="true"
+                android:text="Promotional" />
+
+            <CheckBox
+                android:id="@+id/Transactional"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:checked="true"
+                android:text="Transactional" />
+        </LinearLayout>
+
+        <!-- Button: Create Profile -->
+        <Button
+            android:id="@+id/cubt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_button"
+            android:text="Create User Profile"
+            android:textColor="#fff" />
+
+        <!-- Section: Custom Properties -->
         <TextView
             android:id="@+id/up1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cubt"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30sp"
+            android:layout_marginBottom="8dp"
             android:text="Push Custom User Properties"
-            android:textSize="20sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/upet1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/up1"
-            android:layout_marginLeft="30sp"
-            android:hint="Enter Custom User Property Key" />
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/upet2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/upet1"
-            android:layout_marginLeft="30sp"
-            android:hint="Enter Custom User Property Value" />
+            <EditText
+                android:id="@+id/upet1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg_dark"
+                android:hint="Key"
+                android:padding="12dp" />
+
+            <EditText
+                android:id="@+id/upet2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg_dark"
+                android:hint="Value"
+                android:padding="12dp" />
+
+            <Button
+                android:id="@+id/userpropv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_button_small"
+                android:text="+"
+                android:textColor="#fff" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/upet2"
-            android:layout_marginLeft="30sp"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical" />
 
         <Button
             android:id="@+id/userpropbt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll1"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/roundedcorners"
-            android:text="Upload User Properties" />
-
-        <Button
-            android:id="@+id/userpropv"
-            android:layout_width="50sp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/upet1"
-            android:layout_marginStart="10sp"
-            android:layout_toRightOf="@+id/upet2"
-            android:background="@drawable/roundedcorners"
-            android:text="+" />
-
-    </RelativeLayout>
+            android:background="@drawable/rounded_button"
+            android:text="Upload User Properties"
+            android:textColor="#fff" />
+    </LinearLayout>
 </ScrollView>

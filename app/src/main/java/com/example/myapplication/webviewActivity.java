@@ -24,7 +24,12 @@ public class webviewActivity extends AppCompatActivity {
         mywebview.addJavascriptInterface(new CTWebInterface(CleverTapAPI.getDefaultInstance(this)), "CleverTap");
         mywebview.getSettings().setJavaScriptEnabled(true);
 
-        mywebview.loadUrl("https://abeezerwebtest.000webhostapp.com/");
+
+        mywebview.addJavascriptInterface(new SDKBridge(), "SDKBridge");
+
+        mywebview.getSettings().setJavaScriptEnabled(true);
+
+        mywebview.loadUrl("https://abeezer-golwala.github.io/Web-CleverTap-Integration/");
 
         mywebview.getSettings().setDomStorageEnabled(true);
 

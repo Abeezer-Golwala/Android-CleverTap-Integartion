@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
@@ -15,23 +16,23 @@ import com.clevertap.android.pushtemplates.TemplateRenderer;
 import com.clevertap.android.sdk.ActivityLifecycleCallback;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.pushnotification.CTPushNotificationListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.HashMap;
 
 public class GlobalApplication extends Application implements CTPushNotificationListener, Application.ActivityLifecycleCallbacks {
+    @SuppressLint("NewApi")
     @Override
     public void onCreate() {
-
         ActivityLifecycleCallback.register(this);
+        FirebaseAnalytics.getInstance(this).setUserProperty("clevertap_id", CleverTapAPI.getDefaultInstance(this).getCleverTapID());
         registerActivityLifecycleCallbacks(this);
         CleverTapAPI.setNotificationHandler(new PushTemplateNotificationHandler());
         super.onCreate();
-        CleverTapAPI.createNotificationChannel(getApplicationContext(), "abtest", "abtest", "test ab", 5, true);
         CleverTapAPI.getDefaultInstance(this).setCTPushNotificationListener(this);
         TemplateRenderer.setDebugLevel(3);
         CleverTapAPI.setDebugLevel(3);
         CleverTapAPI.getDefaultInstance(this).enableDeviceNetworkInfoReporting(true);
-
     }
 
     @Override

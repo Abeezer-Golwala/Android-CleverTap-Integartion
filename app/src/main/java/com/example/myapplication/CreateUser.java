@@ -8,14 +8,20 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.clevertap.android.sdk.CleverTapAPI;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class CreateUser extends AppCompatActivity {
     public int keyn = 0;
@@ -23,6 +29,8 @@ public class CreateUser extends AppCompatActivity {
     EditText userpropkey, userpropvalue, namest1, emailst1, numbst1, idst1;
     CheckBox pushc, smsc, emailc, whatsappc, Promotional, Transactional;
     ArrayList<String> newList = new ArrayList<>();
+    Date selectedDob = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,34 @@ public class CreateUser extends AppCompatActivity {
         Promotional.setChecked(true);
         Transactional.setChecked(true);
         HashMap<String, Object> userprop = new HashMap<>();
+
+
+        TextView dobLabel = findViewById(R.id.label_dob);
+        EditText dobEditText = findViewById(R.id.dob);
+        Calendar defaultCalendar = Calendar.getInstance();
+        defaultCalendar.set(2000, Calendar.JANUARY, 1);
+        selectedDob = defaultCalendar.getTime(); // default value
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        dobEditText.setText(sdf.format(selectedDob)); // show default
+
+
+// DOB Picker Logic
+        dobEditText.setOnClickListener(v -> {
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Select your date of birth")
+                    .setSelection(selectedDob.getTime())
+                    .build();
+
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                selectedDob = new Date(selection);
+                dobEditText.setText(sdf.format(selectedDob));
+                dobLabel.setText("DOB Selected"); // ✅ update label after selection
+            });
+
+            datePicker.show(getSupportFragmentManager(), "DOB_PICKER");
+        });
+
+
         findViewById(R.id.userpropv).setOnClickListener(v -> {
             LinearLayout ll = findViewById(R.id.ll1);
             ed[keyn] = new EditText(CreateUser.this);
@@ -63,6 +99,8 @@ public class CreateUser extends AppCompatActivity {
             ll.addView(ed[keyn]);
             keyn++;
         });
+
+        Toast.makeText(getApplicationContext(), "Create User", Toast.LENGTH_SHORT).show();
         //create user function
         findViewById(R.id.cubt).setOnClickListener(v -> {
             Log.d("CreateFunc", "CreateFunc");
@@ -76,6 +114,15 @@ public class CreateUser extends AppCompatActivity {
 
             profileUpdate.put("Email", emailst);
             profileUpdate.put("Phone", numbst);
+            if (selectedDob != null) {
+                Log.d("DOB_SELECTED", "Selected Date object: " + selectedDob.toString());
+                profileUpdate.put("DOB", selectedDob);
+                // 👉 You can pass selectedDob directly to API, convert to timestamp, etc.
+            } else {
+                Log.d("DOB_SELECTED", "No DOB selected");
+                // 👉 Send nothing or null
+            }
+
 
             profileUpdate.put("MSG-push", pushc.isChecked());
             profileUpdate.put("MSG-sms", smsc.isChecked());

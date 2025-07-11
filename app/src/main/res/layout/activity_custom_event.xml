@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".CustomEventActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".CustomEventActivity">
+        android:layout_height="match_parent">
 
-
-        <EditText
-            android:id="@+id/eventName"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Event Name" />
-
-        <Button
-            android:id="@+id/uploadev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventName"
-            android:layout_marginLeft="30sp"
-
-            android:text="Upload Event"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/addprop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/eventName"
-            android:layout_alignParentRight="true"
-
-            android:layout_marginRight="30sp"
-            android:text="Add Event Properties"
-            android:textSize="10sp" />
-
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/addprop"
-            android:layout_marginLeft="30sp"
-            android:orientation="vertical" />
+            android:padding="16dp">
 
 
-    </RelativeLayout>
-</ScrollView>
+            <EditText
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Enter Event Name" />
+
+            <LinearLayout
+                android:id="@+id/button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eventName"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/uploadev"
+                    style="@style/CleverTapButton.Red"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="Upload Event"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/addprop"
+                    style="@style/CleverTapButton.FullWidthRed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Add Event Properties"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_layout"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+
