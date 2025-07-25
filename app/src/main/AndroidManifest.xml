@@ -55,7 +55,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                app://open.my.custom_event
+
                 <data
                     android:host="open.my.custom_event"
                     android:scheme="app" />
@@ -112,11 +112,11 @@
 
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
-            android:value="TEST-6K5-5R8-K96Z" />
+            android:value="TEST-468-W87-546Z" />
 
         <meta-data
             android:name="CLEVERTAP_TOKEN"
-            android:value="TEST-b25-536" />
+            android:value="TEST-ab0-b64" />
         <meta-data
             android:name="CLEVERTAP_IDENTIFIER"
             android:value="Identity" />
@@ -129,7 +129,7 @@
             android:value="1" />
         <meta-data
             android:name="CLEVERTAP_ENCRYPTION_IN_TRANSIT"
-            android:value="1" />
+            android:value="0" />
         <meta-data
             android:name="CLEVERTAP_IDENTIFIER"
             android:value="Identity" />

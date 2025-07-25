@@ -22,6 +22,7 @@ import com.clevertap.android.geofence.CTGeofenceSettings;
 import com.clevertap.android.geofence.Logger;
 import com.clevertap.android.geofence.interfaces.CTGeofenceEventsListener;
 import com.clevertap.android.sdk.CTInboxListener;
+import com.clevertap.android.sdk.CTInboxStyleConfig;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.InAppNotificationButtonListener;
 import com.clevertap.android.sdk.InboxMessageListener;
@@ -79,8 +80,28 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         clevertapDefaultInstance.enablePersonalization();
         final Handler handler = new Handler();
         findViewById(R.id.appinbox).setOnClickListener(v -> {
-
-            clevertapDefaultInstance.showAppInbox();
+            ArrayList<String> tabs = new ArrayList<>();
+            tabs.add("Promotions");
+            tabs.add("Offers");
+//            clevertapDefaultInstance.showAppInbox();
+            CTInboxStyleConfig styleConfig = new CTInboxStyleConfig();
+            styleConfig.setFirstTabTitle("First Tab");
+            styleConfig.setNoMessageViewText("No Notifi");
+            styleConfig.isUsingTabs();
+            styleConfig.describeContents();
+            styleConfig.setTabs(tabs);//Do not use this if you don't want to use tabs
+            styleConfig.setTabBackgroundColor("#FF0000");
+            styleConfig.setSelectedTabIndicatorColor("#0000FF");
+            styleConfig.setSelectedTabColor("#0000FF");
+            styleConfig.setUnselectedTabColor("#FFFFFF");
+            styleConfig.setBackButtonColor("#FF0000");
+            styleConfig.setNavBarTitleColor("#FF0000");
+            styleConfig.setNavBarTitle("MY INBOX");
+            styleConfig.setNavBarColor("#FFFFFF");
+            styleConfig.setInboxBackgroundColor("#ADD8E6");
+            if (clevertapDefaultInstance != null) {
+                clevertapDefaultInstance.showAppInbox(styleConfig); //With Tabs
+            }
 
         });
         findViewById(R.id.getmsg).setOnClickListener(v -> {

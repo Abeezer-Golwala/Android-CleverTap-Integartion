@@ -55,4 +55,7 @@
 
     </style>
 
+    <!--    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+    <!--        <item name="android:windowFullscreen">true</item>-->
+    <!--    </style>-->
 </resources>
