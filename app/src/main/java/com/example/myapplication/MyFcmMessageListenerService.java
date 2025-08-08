@@ -24,6 +24,7 @@ public class MyFcmMessageListenerService extends FirebaseMessagingService {
         for (Map.Entry<String, String> entry : message.getData().entrySet()) {
             extras.putString(entry.getKey(), entry.getValue());
         }
+
         new CTFcmMessageHandler().createNotification(getApplicationContext(), message);
     }
 }

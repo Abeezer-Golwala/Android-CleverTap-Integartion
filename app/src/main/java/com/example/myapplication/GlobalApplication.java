@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
@@ -21,7 +20,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.HashMap;
 
 public class GlobalApplication extends Application implements CTPushNotificationListener, Application.ActivityLifecycleCallbacks {
-    @SuppressLint("NewApi")
+
     @Override
     public void onCreate() {
         ActivityLifecycleCallback.register(this);

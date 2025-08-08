@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,17 +14,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.clevertap.android.geofence.CTGeofenceAPI;
 import com.clevertap.android.geofence.CTGeofenceSettings;
 import com.clevertap.android.geofence.Logger;
 import com.clevertap.android.geofence.interfaces.CTGeofenceEventsListener;
 import com.clevertap.android.sdk.CTInboxListener;
-import com.clevertap.android.sdk.CTInboxStyleConfig;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.InAppNotificationButtonListener;
 import com.clevertap.android.sdk.InboxMessageListener;
@@ -32,7 +37,6 @@ import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnit;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnitContent;
 import com.clevertap.android.sdk.inapp.CTLocalInApp;
 import com.clevertap.android.sdk.inbox.CTInboxMessage;
-import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONObject;
 
@@ -40,89 +44,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements CTInboxListener, DisplayUnitListener, LocationListener, InboxMessageListener, CTGeofenceEventsListener, InAppNotificationButtonListener, PushPermissionResponseListener {
+
+    private static final String TAG = "CleverTap";
+    private static final int keepTestIcon = R.drawable.testicon;
     protected LocationManager locationManager;
-    protected LocationListener locationListener;
-    SliderView sliderView;
+    ViewPager2 viewPager;
     ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
-    //    private FirebaseAnalytics mFirebaseAnalytics;
     CleverTapAPI clevertapDefaultInstance;
+    ViewPager2Adapter viewPager2Adapter;
+    Button btnShowInbox;
+    Button btnWebview;
+    Button btnCustomEvent;
+    Button btnCreateProfile;
+    private boolean isInboxInitialized = false; // To ensure inbox is shown only after loaded
 
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        Log.d("Clevertap", "get_extras_foreground " + intent.getExtras().getString("wzrk_Accid"));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            CleverTapAPI.getDefaultInstance(getApplicationContext()).pushNotificationClickedEvent(intent.getExtras());
-            NotificationUtils.dismissNotification(intent, this);
-
-        }
-
+    private String getUriStringForDrawable(int resourceId) {
+        return ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + getResources().getResourcePackageName(resourceId)
+                + '/' + getResources().getResourceTypeName(resourceId)
+                + '/' + getResources().getResourceEntryName(resourceId);
     }
-
-    @Override
-    protected void onResume() {
-
-
-        super.onResume();
-
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(this);
-        clevertapDefaultInstance.enablePersonalization();
-        final Handler handler = new Handler();
-        findViewById(R.id.appinbox).setOnClickListener(v -> {
-            ArrayList<String> tabs = new ArrayList<>();
-            tabs.add("Promotions");
-            tabs.add("Offers");
-//            clevertapDefaultInstance.showAppInbox();
-            CTInboxStyleConfig styleConfig = new CTInboxStyleConfig();
-            styleConfig.setFirstTabTitle("First Tab");
-            styleConfig.setNoMessageViewText("No Notifi");
-            styleConfig.isUsingTabs();
-            styleConfig.describeContents();
-            styleConfig.setTabs(tabs);//Do not use this if you don't want to use tabs
-            styleConfig.setTabBackgroundColor("#FF0000");
-            styleConfig.setSelectedTabIndicatorColor("#0000FF");
-            styleConfig.setSelectedTabColor("#0000FF");
-            styleConfig.setUnselectedTabColor("#FFFFFF");
-            styleConfig.setBackButtonColor("#FF0000");
-            styleConfig.setNavBarTitleColor("#FF0000");
-            styleConfig.setNavBarTitle("MY INBOX");
-            styleConfig.setNavBarColor("#FFFFFF");
-            styleConfig.setInboxBackgroundColor("#ADD8E6");
-            if (clevertapDefaultInstance != null) {
-                clevertapDefaultInstance.showAppInbox(styleConfig); //With Tabs
+
+        // Request POST_NOTIFICATIONS on Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
-
-        });
-        findViewById(R.id.getmsg).setOnClickListener(v -> {
-            clevertapDefaultInstance.pushEvent("Abeezergetmsg");
-        });
-        findViewById(R.id.webview).setOnClickListener(view -> MainActivity.this.startActivity(new Intent(MainActivity.this, webviewActivity.class)));
-        clevertapDefaultInstance.setCTInboxMessageListener(this);
-        clevertapDefaultInstance.setDisplayUnitListener(this);
-
-        if (clevertapDefaultInstance != null) {
-            //Set the Notification Inbox Listener
-            clevertapDefaultInstance.setCTNotificationInboxListener(this);
-            clevertapDefaultInstance.initializeInbox();
-            clevertapDefaultInstance.pushEvent("App_launch1");
-            clevertapDefaultInstance.pushEvent("App_launch2");
-            clevertapDefaultInstance.pushEvent("App_launch3");
         }
-
-        Log.d("clevertap123", "test");
-        clevertapDefaultInstance.setInAppNotificationButtonListener(this);
-
+        final Handler handler = new Handler();
 
         handler.postDelayed(() -> {
             JSONObject jsonObject = CTLocalInApp.builder()
@@ -137,18 +91,54 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
 
         }, 500);
 
-        clevertapDefaultInstance.setLocation(clevertapDefaultInstance.getLocation()); //android.location.Location
-//        Log.d("CleverTap T Default", "location Default"+location.toString());
-        clevertapDefaultInstance.syncVariables();
-        Log.d("CleverTapT", "theme value CT" + clevertapDefaultInstance.getVariableValue("theme"));
 
-        Log.d("CleverTapT", "location CT" + clevertapDefaultInstance.getLocation());
-        setupCleverTapGeofence();
+        // Initialize CleverTap SDK
+        clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
+        if (clevertapDefaultInstance != null) {
+            clevertapDefaultInstance.setDisplayUnitListener(this);
+            clevertapDefaultInstance.setCTNotificationInboxListener(this);
+            clevertapDefaultInstance.setCTInboxMessageListener(this);
+            clevertapDefaultInstance.initializeInbox();
+            if (clevertapDefaultInstance != null) {
+                //Set the Notification Inbox Listener
+                clevertapDefaultInstance.setCTNotificationInboxListener(this);
+                clevertapDefaultInstance.initializeInbox();
+                clevertapDefaultInstance.pushEvent("App_launch1");
+                clevertapDefaultInstance.pushEvent("App_launch2");
+                clevertapDefaultInstance.pushEvent("App_launch3");
+            }
+            clevertapDefaultInstance.setInAppNotificationButtonListener(this);
 
 
-        ;
-        sliderView = findViewById(R.id.slider);
-        clevertapDefaultInstance.getAllDisplayUnits();
+            CleverTapAPI.createNotificationChannel(
+                    getApplicationContext(),
+                    "abtest",
+                    "Your Channel Name",
+                    "Your Channel Description",
+                    NotificationManager.IMPORTANCE_HIGH, // >= O
+                    true // Show badge
+            );
+
+
+            // Optionally trigger a first fetch of display units
+            clevertapDefaultInstance.getAllDisplayUnits();
+        } else {
+            Log.e(TAG, "CleverTap instance is NULL.");
+        }
+
+        // ViewPager/Slider Section (optional, for your banners/carousel)
+        viewPager = findViewById(R.id.slider);
+        sliderDataArrayList.add(new SliderData(getUriStringForDrawable(R.drawable.default_slider_1), null, null));
+        sliderDataArrayList.add(new SliderData(getUriStringForDrawable(R.drawable.default_slider_2), null, null));
+        sliderDataArrayList.add(new SliderData(getUriStringForDrawable(R.drawable.default_slider_3), null, null));
+        viewPager2Adapter = new ViewPager2Adapter(this, sliderDataArrayList);
+        viewPager.setAdapter(viewPager2Adapter);
+
+        // Button Setup
+        btnShowInbox = findViewById(R.id.appinbox);
+        btnWebview = findViewById(R.id.webview);
+        btnCustomEvent = findViewById(R.id.getmsg);
+        findViewById(R.id.createuser).setOnClickListener(view -> MainActivity.this.startActivity(new Intent(MainActivity.this, CreateUser.class)));
         findViewById(R.id.pushnotification).setOnClickListener(v -> clevertapDefaultInstance.pushEvent("AbeezerPushEvent"));
         findViewById(R.id.inappnotif).setOnClickListener(v -> {
 
@@ -158,8 +148,33 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
             Log.d("CleverTap", "product_1" + clevertapDefaultInstance.getProperty("testt"));
         });
         findViewById(R.id.pushev).setOnClickListener(v -> MainActivity.this.startActivity(new Intent(MainActivity.this, CustomEventActivity.class)));
-        findViewById(R.id.createuser).setOnClickListener(view -> MainActivity.this.startActivity(new Intent(MainActivity.this, CreateUser.class)));
-        clevertapDefaultInstance.recordScreen("Home");
+
+        if (btnShowInbox != null) {
+            btnShowInbox.setOnClickListener(v -> {
+                if (clevertapDefaultInstance != null && isInboxInitialized) {
+                    clevertapDefaultInstance.showAppInbox(); // Will open the CleverTap Inbox UI
+                } else {
+                    Toast.makeText(MainActivity.this, "Inbox not ready yet!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        if (btnWebview != null) {
+            btnWebview.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, webviewActivity.class); // Replace with your webview activity
+                startActivity(intent);
+            });
+        }
+
+        if (btnCustomEvent != null) {
+            btnCustomEvent.setOnClickListener(v -> {
+                if (clevertapDefaultInstance != null) {
+                    clevertapDefaultInstance.pushEvent("Abeezergetmsg");
+
+                    Toast.makeText(MainActivity.this, "Inbox Message Triggerd", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         clevertapDefaultInstance.enableDeviceNetworkInfoReporting(true);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -169,48 +184,8 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
         }
-//        CleverTapInstanceConfig clevertapAdditionalInstanceConfig = CleverTapInstanceConfig.createInstance(this, "TEST-468-W87-546Z", "TEST-ab0-b64");
-//        clevertapAdditionalInstanceConfig.setDebugLevel(CleverTapAPI.LogLevel.DEBUG); // default is CleverTapAPI.LogLevel.INFO
-//
-//        clevertapAdditionalInstanceConfig.setAnalyticsOnly(true); // disables the user engagement features of the instance, default is false
-//
-//        clevertapAdditionalInstanceConfig.useGoogleAdId(true); // enables the collection of the Google ADID by the instance, default is false
-//
-//        clevertapAdditionalInstanceConfig.enablePersonalization(false); //enables personalization, default is true.
-//        CleverTapAPI clevertapAdditionalInstance = CleverTapAPI.instanceWithConfig(clevertapAdditionalInstanceConfig);
 
 
-    }
-
-    @Override
-    public void onDisplayUnitsLoaded(ArrayList<CleverTapDisplayUnit> units) {
-        if (sliderDataArrayList != null) {
-            sliderDataArrayList.removeAll(sliderDataArrayList);
-        }
-        Log.d("CleverTap", "Display units" + units);
-        CleverTapAPI.getDefaultInstance(getApplicationContext()).pushDisplayUnitViewedEventForID(units.get(0).getUnitID());
-        for (int i = 0; i < units.size(); i++) {
-            CleverTapDisplayUnit unit = units.get(i);
-            for (CleverTapDisplayUnitContent j : unit.getContents()) {
-                //getting urls and adding to array list
-                sliderDataArrayList.add(new SliderData(j.getMedia()));
-
-            }
-        }
-        SliderAdapter adapter = new SliderAdapter(this, sliderDataArrayList);
-        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-        sliderView.setSliderAdapter(adapter);
-        sliderView.setScrollTimeInSec(3);
-        sliderView.setAutoCycle(true);
-        sliderView.startAutoCycle();
-    }
-
-    @Override
-    public void inboxDidInitialize() {
-    }
-
-    @Override
-    public void inboxMessagesDidUpdate() {
     }
 
     @SuppressLint("LongLogTag")
@@ -227,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
                 .setGeofenceNotificationResponsiveness(300000)// int value for geofence notification responsiveness in milliseconds
                 .build();
         CTGeofenceAPI.getInstance(this).init(ctGeofenceSettings, clevertapDefaultInstance);
-
+        clevertapDefaultInstance.parseVariables();
         try {
             CTGeofenceAPI.getInstance(this).triggerLocation();
         } catch (Exception e) {
@@ -240,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
             Log.e("clevertap OnGeofenceApiInitialized-", "-----OnGeofenceApiInitialized----=");
         });
         CTGeofenceAPI.getInstance(this).setCtGeofenceEventsListener(this);
+
     }
 
     @Override
@@ -251,30 +227,88 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         Log.d("CleverTap T CT", "location CT" + cleverTapAPI.getLocation());
     }
 
+    // After activity already running, handle new intents
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1001) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d("CleverTap permission", "User granted permission");
-                // Proceed with showing notifications
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d(TAG, "onNewIntent called");
+        if (clevertapDefaultInstance != null) {
+            Bundle extras = intent.getExtras();
+            if (extras != null && CleverTapAPI.getNotificationInfo(extras) != null
+                    && CleverTapAPI.getNotificationInfo(extras).fromCleverTap) {
+                Log.d(TAG, "onNewIntent: Received CleverTap Push Notification payload");
+                clevertapDefaultInstance.pushNotificationClickedEvent(extras);
+
+                super.onNewIntent(intent);
+
+                Log.d("Clevertap", "get_extras_foreground " + intent.getExtras().getString("wzrk_Accid"));
+                NotificationUtils.dismissNotification(intent, this);
+
+
             } else {
-                Log.d("CleverTap permission", "User denied permission");
-                // Optionally guide user to settings
+                Log.d(TAG, "onNewIntent: Received normal intent. Extras: " + (extras != null ? extras.toString() : "null"));
             }
         }
     }
 
+    // CleverTap Inbox and Display Units Listeners
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDisplayUnitsLoaded(final ArrayList<CleverTapDisplayUnit> units) {
+        Log.d(TAG, "onDisplayUnitsLoaded called, units size: " + (units != null ? units.size() : "null"));
+        if (units == null || units.isEmpty()) {
+            return;
+        }
+        final ArrayList<SliderData> newSliderItems = new ArrayList<>();
+        for (CleverTapDisplayUnit unit : units) {
+            if (unit != null && unit.getContents() != null) {
+                if (clevertapDefaultInstance != null) {
+                    clevertapDefaultInstance.pushDisplayUnitViewedEventForID(unit.getUnitID());
+                }
+                for (CleverTapDisplayUnitContent content : unit.getContents()) {
+                    if (content != null && content.getMedia() != null && !content.getMedia().isEmpty()) {
+                        String imageUrl = content.getMedia();
+                        String targetUrl = content.getActionUrl();
+                        String wzrkId = unit.getUnitID();
+                        newSliderItems.add(new SliderData(imageUrl, targetUrl, wzrkId));
+                    }
+                }
+            }
+        }
+        runOnUiThread(() -> {
+            if (viewPager2Adapter != null && !newSliderItems.isEmpty()) {
+                viewPager2Adapter.updateData(newSliderItems);
+            }
+        });
     }
 
+    // Called when Inbox is loaded and ready
+    @Override
+    public void inboxDidInitialize() {
+        Log.d(TAG, "Inbox Initialized");
+        isInboxInitialized = true;
+        // Optionally, update badge/count
+        if (btnShowInbox != null && clevertapDefaultInstance != null) {
+            int count = clevertapDefaultInstance.getInboxMessageUnreadCount();
+            btnShowInbox.setText("Inbox (" + count + ")");
+        }
+    }
 
+    // Update inbox badge/count on message update
+    @Override
+    public void inboxMessagesDidUpdate() {
+        Log.d(TAG, "Inbox Messages Updated");
+        if (btnShowInbox != null && clevertapDefaultInstance != null) {
+            int count = clevertapDefaultInstance.getInboxMessageUnreadCount();
+            btnShowInbox.setText("Inbox (" + count + ")");
+        }
+    }
+
+    // Optional: React to inbox item tap
     @Override
     public void onInboxItemClicked(CTInboxMessage message, int contentPageIndex, int buttonIndex) {
-
+        Log.d(TAG, "Inbox Message Clicked: " + message.getMessageId() + " at page " + contentPageIndex + " button " + buttonIndex);
+        // You can open a dedicated screen or handle action URL
     }
 
     @Override
@@ -290,13 +324,27 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
     }
 
 
+    // Optional: log user response to system notification permission pop-up
     @Override
-    public void onInAppButtonClick(HashMap<String, String> hashMap) {
-        Log.d("CleverTap", "Button click callback" + hashMap);
+    public void onPushPermissionResponse(boolean accepted) {
+        Log.i(TAG, "Push Permission Response by User: " + (accepted ? "ACCEPTED" : "DENIED"));
+    }
+
+    // If you use ActivityCompat.requestPermissions, implement this!
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 101 && permissions.length > 0 && permissions[0].equals(Manifest.permission.POST_NOTIFICATIONS)) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Notification permission granted!");
+            } else {
+                Log.d(TAG, "Notification permission denied.");
+            }
+        }
     }
 
     @Override
-    public void onPushPermissionResponse(boolean accepted) {
-
+    public void onInAppButtonClick(HashMap<String, String> hashMap) {
+        Log.d("CleverTap", "Button click callback" + hashMap);
     }
 }

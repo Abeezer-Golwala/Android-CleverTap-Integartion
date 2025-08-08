@@ -6,30 +6,36 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface"
     android:fitsSystemWindows="true"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/slider"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:sliderAnimationDuration="600"
-            app:sliderAutoCycleDirection="back_and_forth"
-            app:sliderIndicatorAnimationDuration="600"
-            app:sliderIndicatorEnabled="true"
-            app:sliderIndicatorGravity="center_horizontal|bottom"
-            app:sliderIndicatorMargin="15dp"
-            app:sliderIndicatorOrientation="horizontal"
-            app:sliderIndicatorPadding="3dp"
-            app:sliderIndicatorRadius="2dp"
-            app:sliderIndicatorSelectedColor="?attr/colorOnBackground"
-            app:sliderIndicatorUnselectedColor="?attr/colorBackgroundFloating"
-            app:sliderScrollTimeInSec="1" />
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/slider_card_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="H,4:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fadingEdge="vertical" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -40,8 +46,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ctaLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="10dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
                 <!-- First Row -->
                 <com.google.android.material.button.MaterialButton
@@ -49,23 +63,22 @@
                     style="@style/CleverTapButton.Red"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:layout_marginEnd="4dp"
                     android:text="Create User Profile"
-                    app:layout_constraintEnd_toStartOf="@+id/pushnotification"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pushnotification"
                     style="@style/CleverTapButton.Red"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:text="Push Notification"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/createuser"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- Second Row -->
                 <com.google.android.material.button.MaterialButton
@@ -74,24 +87,23 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
                     android:text="App Inbox"
-                    app:layout_constraintEnd_toStartOf="@+id/getmsg"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createuser"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintTop_toBottomOf="@+id/createuser" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/getmsg"
                     style="@style/CleverTapButton.Red"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:text="Get Inbox Message"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/appinbox"
-                    app:layout_constraintTop_toBottomOf="@+id/pushnotification"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/pushnotification" />
 
                 <!-- Third Row -->
                 <com.google.android.material.button.MaterialButton
@@ -100,36 +112,34 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
                     android:text="In App"
-                    app:layout_constraintEnd_toStartOf="@+id/pushev"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appinbox"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintTop_toBottomOf="@+id/appinbox" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pushev"
                     style="@style/CleverTapButton.Red"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:text="Push Custom Events"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/inappnotif"
-                    app:layout_constraintTop_toBottomOf="@+id/getmsg"
-                    app:layout_constraintWidth_percent="0.42" />
+                    app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/getmsg" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/webview"
                     style="@style/CleverTapButton.Red"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
                     android:layout_marginTop="8dp"
-
                     android:text="Open Webview"
-                    app:layout_constraintTop_toBottomOf="@+id/inappnotif" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pushev" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

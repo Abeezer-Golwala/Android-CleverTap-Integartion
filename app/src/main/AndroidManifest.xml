@@ -130,9 +130,6 @@
         <meta-data
             android:name="CLEVERTAP_ENCRYPTION_IN_TRANSIT"
             android:value="0" />
-        <meta-data
-            android:name="CLEVERTAP_IDENTIFIER"
-            android:value="Identity" />
 
         <service
             android:name=".MyFcmMessageListenerService"
